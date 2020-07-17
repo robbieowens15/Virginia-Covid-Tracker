@@ -43,7 +43,6 @@ class Locality:
 #Function to create the global list (tracking_loalities) localities to be tracked
 def create_localities(list):
     for locality_name in list:
-        data_list = []
         tracking_loalities.insert(0, Locality(locality_name))
 
 
@@ -98,8 +97,6 @@ def calculate_moving_n_day_average_list(locality, tag, n):
             current_sum += daily_increase_list[i+j]
 
         current_n_day_average = round(current_sum/DAYS_TO_AVERAGE, 2)
-
-        print(current_n_day_average)
         n_day_moving_average.insert(0, current_n_day_average)
     return n_day_moving_average
 
