@@ -96,7 +96,7 @@ def calculate_moving_n_day_average_list(locality, tag, n):
         for j in range(DAYS_TO_AVERAGE):
             current_sum += daily_increase_list[i+j]
 
-        current_n_day_average = round(current_sum/DAYS_TO_AVERAGE, 2)
+        current_n_day_average = int(round(current_sum/DAYS_TO_AVERAGE, 0))
         n_day_moving_average.insert(0, current_n_day_average)
     return n_day_moving_average
 
