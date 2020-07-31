@@ -3,8 +3,9 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import seaborn as sns
 import process_data as processed_data
+import math
 
-
+#plt.style.use('seaborn')
 def cumsum_vs_time(locality_obj, tag):
     y = []
     x = []
@@ -20,7 +21,8 @@ def cumsum_vs_time(locality_obj, tag):
 
 
     ax.plot(x,y, linewidth=3.5)
-    ax.scatter(x,y,alpha=0.6,edgecolors='face')
+    #ax.scatter(x,y,alpha=0.6,edgecolors='face')
+    ax.bar(x,y,0.5)
     xlabels = []
     xticks = []
     for i in range(len(x)):
@@ -43,17 +45,19 @@ def n_day_moving_average_vs_time(locality_obj, tag, n):
     x = []
     for i in range(len(data)-n):
         y.insert(0, int(data[i]))
-        x.insert(0, locality_obj.data_list[i+n][processed_data.DATE])
+        x.insert(0, locality_obj.data_list[i+2*n][processed_data.DATE])
     x.reverse()
-    y.reverse()
+    print(x[-1])
+    #y.reverse()
 
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
     plt.grid(color='black',linewidth=0.25,alpha=0.75)
 
 
     ax.plot(x,y, linewidth=3.5)
-    ax.scatter(x,y,alpha=0.6,edgecolors='face')
+    #ax.scatter(x,y,alpha=0.6,edgecolors='face')
+    ax.bar(x,y,0.5)
     xlabels = []
     xticks = []
     for i in range(len(x)):
@@ -74,9 +78,40 @@ def n_day_moving_average_vs_time(locality_obj, tag, n):
         y_data_label = 'New Deaths'
 
     plt.ylabel(y_data_label)
-    plt.title(f'{n} Day Moving Average for {y_data_label} in '+locality_obj.name)
+    plt.title(f'{n} Day Moving Average for Daily {y_data_label} in '+locality_obj.name)
 
     plt.show()
 
+def new_vs_cumlative(locality_obj, tag, n, m):
+    y = processed_data.calculate_moving_n_day_average_list(locality_obj,tag,n)
+    x = []
+    for i in range(len(locality_obj.data_list)-(n+1)):
+        x.insert(0, locality_obj.data_list[i][tag])
+    x.reverse()
+    y.reverse()
+
+    fig, ax = plt.subplots()
+
+    plt.grid(color='black',linewidth=0.25,alpha=0.75)
+
+
+    ax.plot(x,y, linewidth=3.5)
+    #ax.scatter(x,y,alpha=0.6,edgecolors='face')
+    #ax.set_yscale('log')
+    #ax.set_xscale('log')
+    ax.bar(x,y,0.5)
+
+    #line_x = np.linspace(0,len(x),2*len(x))
+    #line_y = (2)*x
+    #plt.plot(line_x, line_y, '-r')
+
+    #plt.plot(line_x,line_y)
+    plt.ylabel('New Cases')
+    plt.xlabel('Cumlative Cases')
+ 
+    #plt.xticks(rotation=30)
+    plt.show()
+
 #cumsum_vs_time(processed_data.tracking_loalities[0],processed_data.TOTAL_CASES)
-n_day_moving_average_vs_time(processed_data.tracking_loalities[2],processed_data.TOTAL_HOSPITALIZATIONS, 7)
+n_day_moving_average_vs_time(processed_data.tracking_loalities[2],processed_data.TOTAL_CASES, 7)
+#new_vs_cumlative(processed_data.tracking_loalities[2],processed_data.TOTAL_CASES, 3, 2)
