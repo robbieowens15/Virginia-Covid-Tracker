@@ -27,8 +27,6 @@ def dowload_csv(csv_url):
         
         if(line[0].isalpha()):
             line = line[2:]
-        else:
-            line = line[:-2]
     
         file_writer.write(line + "\n")
     file_writer.close()
