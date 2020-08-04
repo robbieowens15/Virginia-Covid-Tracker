@@ -128,5 +128,5 @@ def new_vs_cumlative(locality_obj, tag, n, m):
     plt.savefig(file_path)
 
 #cumsum_vs_time(processed_data.tracking_loalities[0],processed_data.TOTAL_CASES)
-n_day_moving_average_vs_time(processed_data.tracking_loalities[2],processed_data.TOTAL_HOSPITALIZATIONS, 7)
+n_day_moving_average_vs_time(processed_data.tracking_loalities[4],processed_data.TOTAL_CASES, 5)
 #new_vs_cumlative(processed_data.tracking_loalities[2],processed_data.TOTAL_CASES, 3, 2)
