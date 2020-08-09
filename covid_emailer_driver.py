@@ -1,3 +1,5 @@
+import os
+
 import csv_obtainer as csv
 import process_data as pd
 import html_generator as html
@@ -15,9 +17,27 @@ def main():
         html.create_html(locality,7)
     es.send_mail(pd.tracking_localities[1])
 
-#def delete_clutter():
+def delete_clutter():
+    path = 'HTML/images'
+    with os.scandir(path) as dirs:
+        for entry in dirs:
+            os.remove(entry)
+
+    path = 'CSVs'
+    with os.scandir(path) as dirs:
+        for entry in dirs:
+            os.remove(entry)
+
+    path = 'HTML'
+    with os.scandir(path) as dirs:
+        for entry in dirs:
+            if os.path.isfile(entry):
+                if entry.name == 'email_template.html':
+                    continue
+                os.remove(entry)
 
 if __name__ == "__main__":
     main()
+    delete_clutter()
     
     
