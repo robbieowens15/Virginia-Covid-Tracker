@@ -31,13 +31,13 @@ def cumsum_vs_time(locality_obj, tag):
     xlabels = []
     xticks = []
     for i in range(len(x)):
-        if(i%10 == 0):
+        if(i%15 == 0):
             xlabels.insert(0,x[i])
             xticks.insert(0,i)
        
     ax.set_xticks(xticks)
     ax.set_xticklabels(xlabels)
-    plt.xticks(rotation=30)
+    plt.xticks(rotation=25)
 
     plt.ylabel(tag)
     plt.title(f'Cummulative {tag} in '+locality_obj.name)
@@ -94,5 +94,5 @@ def n_day_moving_average_vs_time(locality_obj, tag, n):
     #plt.show()
     
 #cumsum_vs_time(processed_data.tracking_loalities[0],processed_data.TOTAL_CASES)
-n_day_moving_average_vs_time(processed_data.tracking_loalities[4],processed_data.TOTAL_CASES, 5)
+#n_day_moving_average_vs_time(processed_data.tracking_loalities[4],processed_data.TOTAL_CASES, 5)
 #new_vs_cumlative(processed_data.tracking_loalities[2],processed_data.TOTAL_CASES, 3, 2)
