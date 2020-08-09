@@ -41,12 +41,12 @@ def cumsum_vs_time(locality_obj, tag):
 
     plt.ylabel(tag)
     plt.title(f'Cummulative {tag} in '+locality_obj.name)
-
-    #plt.show()
     
     data_dir = Path(str(os.path.dirname(__file__))+'/HTML/images')
     file_path = data_dir / f'{locality_obj.name}-cumvstime{tag}-{date}.jpg'
     plt.savefig(file_path)
+
+    plt.close()
 
 def n_day_moving_average_vs_time(locality_obj, tag, n):
     data = processed_data.calculate_moving_n_day_average_list(locality_obj, tag, n)
@@ -91,8 +91,5 @@ def n_day_moving_average_vs_time(locality_obj, tag, n):
     file_path = data_dir / f'{locality_obj.name}-{n}daymoving{tag}-{date}.jpg'
     plt.savefig(file_path)
 
-    #plt.show()
-    
-#cumsum_vs_time(processed_data.tracking_loalities[0],processed_data.TOTAL_CASES)
-#n_day_moving_average_vs_time(processed_data.tracking_loalities[4],processed_data.TOTAL_CASES, 5)
-#new_vs_cumlative(processed_data.tracking_loalities[2],processed_data.TOTAL_CASES, 3, 2)
+    plt.close()
+
