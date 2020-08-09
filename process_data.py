@@ -144,7 +144,10 @@ def return_reproduction_rate(locality,tag,n):
         index = -2-i
         current = return_n_day_moving_average(locality,tag,n,True,index)
         previous = return_n_day_moving_average(locality,tag,n,False,index)
-        r = round((current/previous),3)
+        if previous == 0:
+            r = 0
+        else:
+            r = round((current/previous),3)
         data_list.insert(0,round(r,3))
     sum = 0
     for num in data_list:

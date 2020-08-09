@@ -9,8 +9,8 @@ VDoH_CSV_URL = 'https://data.virginia.gov/api/views/bre9-aqqr/rows.csv?accessTyp
 '''
 This function will download the csv from a web url and save it to the directiory /CSVs
 '''
-def dowload_csv(csv_url):
-    response = request.urlopen(csv_url)
+def dowload_csv():
+    response = request.urlopen(VDoH_CSV_URL)
     csv = response.read()
     csv_str= str(csv)
     lines = csv_str.split("\\n")
@@ -32,4 +32,4 @@ def dowload_csv(csv_url):
     file_writer.close()
 
 #Uncomment and run file to retireve latest data
-dowload_csv(VDoH_CSV_URL)
+dowload_csv()

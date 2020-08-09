@@ -6,14 +6,26 @@ import graph_generator as gd
 
 date = date.today().isoformat()
 
-def create_html(locality):
+#Increasing/Decrease/Stagnint Boundries
+R_LOWER_BOUND = 0.88
+R_UPPER_BOUND = 1.12
+
+def create_html(locality,n):
     location = locality.name
-    cases_increase = pd.calculate_daily_increase(locality,pd.TOTAL_CASES)
-    hospitalizations_increase = pd.calculate_daily_increase(locality,pd.TOTAL_HOSPITALIZATIONS)
-    death_increase = pd.calculate_daily_increase(locality,pd.TOTAL_DEATHS)
-    yesterday_cases_increase = pd.calculate_yesterday_daily_increase(locality,pd.TOTAL_CASES)
-    yesterday_hospitalizations_increase = pd.calculate_yesterday_daily_increase(locality,pd.TOTAL_HOSPITALIZATIONS)
-    yesterday_death_increase = pd.calculate_yesterday_daily_increase(locality,pd.TOTAL_DEATHS)
+
+    cases_increase = pd.calculate_daily_increase(locality,pd.TOTAL_CASES,True)
+    hospitalizations_increase = pd.calculate_daily_increase(locality,pd.TOTAL_HOSPITALIZATIONS, True)
+    death_increase = pd.calculate_daily_increase(locality,pd.TOTAL_DEATHS, True)
+    yesterday_cases_increase = pd.calculate_daily_increase(locality,pd.TOTAL_CASES,False)
+    yesterday_hospitalizations_increase = pd.calculate_daily_increase(locality,pd.TOTAL_HOSPITALIZATIONS,False)
+    yesterday_death_increase = pd.calculate_daily_increase(locality,pd.TOTAL_DEATHS,False)
+
+    cases_n_moving_average = pd.return_n_day_moving_average(locality,pd.TOTAL_CASES,n,True,None)
+    hospitalizations_n_moving_average = pd.return_n_day_moving_average(locality,pd.TOTAL_HOSPITALIZATIONS,n,True,None)
+    deaths_n_moving_average = pd.return_n_day_moving_average(locality,pd.TOTAL_DEATHS,n,True,None)
+    previous_cases_n_moving_average = pd.return_n_day_moving_average(locality,pd.TOTAL_CASES,n,False,None)
+    previous_hospitalizations_n_moving_average = pd.return_n_day_moving_average(locality,pd.TOTAL_HOSPITALIZATIONS,n,False,None)
+    previous_deaths_n_moving_average = pd.return_n_day_moving_average(locality,pd.TOTAL_DEATHS,n,False,None)
 
     case_updownsame = ''
     if cases_increase - yesterday_cases_increase > 0:
@@ -39,62 +51,151 @@ def create_html(locality):
     else:
         death_updownsame = 'same'
 
-    n=7
+    n_case_updownsame = ''
+    if cases_n_moving_average - previous_cases_n_moving_average > 0:
+        n_case_updownsame = 'up'
+    elif cases_n_moving_average - previous_cases_n_moving_average < 0:
+        n_case_updownsame = 'down'
+    else:
+        n_case_updownsame = 'same'
+
+    n_hosptialization_updownsame = ''
+    if hospitalizations_n_moving_average - previous_hospitalizations_n_moving_average > 0:
+        n_hosptialization_updownsame = 'up'
+    elif hospitalizations_n_moving_average - previous_hospitalizations_n_moving_average < 0:
+        n_hosptialization_updownsame = 'down'
+    else:
+        n_hosptialization_updownsame = 'same'
+
+    n_death_updownsame = ''
+    if deaths_n_moving_average- previous_deaths_n_moving_average > 0:
+        n_death_updownsame = 'up'
+    elif deaths_n_moving_average- previous_deaths_n_moving_average < 0:
+        n_death_updownsame = 'down'
+    else:
+        n_death_updownsame = 'same'
+
+    new_cases_r_value = pd.return_reproduction_rate(locality,pd.TOTAL_CASES,n)
+    
+    new_cases_increasing_decreasing_stagnint = ''
+    if new_cases_r_value <= R_LOWER_BOUND:
+        new_cases_increasing_decreasing_stagnint = 'decreasing'
+    elif new_cases_r_value >= R_UPPER_BOUND:
+        new_cases_increasing_decreasing_stagnint = 'increasing'
+    else:
+        new_cases_increasing_decreasing_stagnint = 'stable'
+
+    val = pd.return_reproduction_rate(locality,pd.TOTAL_HOSPITALIZATIONS,n)
+    new_hospitalizations_increasing_decreasing_stagnint = ''
+    if val <= R_LOWER_BOUND:
+        new_hospitalizations_increasing_decreasing_stagnint = 'decreasing'
+    elif val >= R_UPPER_BOUND:
+        new_hospitalizations_increasing_decreasing_stagnint = 'increasing'
+    else:
+        new_hospitalizations_increasing_decreasing_stagnint = 'stable'
+    
+    val = pd.return_reproduction_rate(locality,pd.TOTAL_DEATHS,n)
+    new_deaths_increasing_decreasing_stagnint = ''
+    if val <= R_LOWER_BOUND:
+        new_deaths_increasing_decreasing_stagnint = 'decreasing'
+    elif val >= R_UPPER_BOUND:
+        new_deaths_increasing_decreasing_stagnint = 'increasing'
+    else:
+        new_deaths_increasing_decreasing_stagnint = 'stable'
+    
+    total_cases = pd.return_cumlative(locality,pd.TOTAL_CASES)
+    total_hosptializations = pd.return_cumlative(locality,pd.TOTAL_HOSPITALIZATIONS)
+    total_deaths = pd.return_cumlative(locality,pd.TOTAL_DEATHS)
+
+    #make Graphs
     gd.n_day_moving_average_vs_time(locality, pd.TOTAL_CASES,n)
     gd.n_day_moving_average_vs_time(locality, pd.TOTAL_HOSPITALIZATIONS,n)
     gd.n_day_moving_average_vs_time(locality,pd.TOTAL_DEATHS,n)
-
-
-    new_cases_graph_path = f'images/{location}-{n}daymoving{pd.TOTAL_CASES}-{date}.jpg'
-    new_hospitalizations_graph_path = f'images/{location}-{n}daymoving{pd.TOTAL_HOSPITALIZATIONS}-{date}.jpg'
-    new_deaths_graph_path = f'images/{location}-{n}daymoving{pd.TOTAL_DEATHS}-{date}.jpg'
+    gd.cumsum_vs_time(locality,pd.TOTAL_CASES)
+    gd.cumsum_vs_time(locality,pd.TOTAL_DEATHS)
+    gd.cumsum_vs_time(locality,pd.TOTAL_DEATHS)
 
     data_dir = Path(str(os.path.dirname(__file__))+'/HTML')
     file_path = data_dir / f'{location}-{date}.html'
     f = open(file_path,'w')
 
     message = f"""
-    <!DOCTYPE html>
-    <html>
-        <h1 align="center">This is your Covid-19 update for {location}: {date}</h1>
-        <table align="center" style="width:80%">
-            <tr>
-                <td>
-                    <h2 align="center">New Cases: {cases_increase}</h2>
-                    <p>There were {cases_increase} new cases recorded as of yesterday which is {case_updownsame}
-                        from yesterday's count of {yesterday_cases_increase}
-                        <br>
-                    </p>
-                    <h4>Look at the {n} day moving average for new cases in {location}:</h4>
-                    <img src="{new_cases_graph_path}" alt= "New Cases vs Time for {date}">
-                    <p>New Cases in {location} is appeare to be DECLINE/STAGNINT/INCREASING</p>
-                </td>
-                <td>
-                    <h2 align="center">New Hospitalizations: {hospitalizations_increase}</h2>
-                    <p>There were {hospitalizations_increase} new Hospitalizations recorded as of yesterday which is {hosptialization_updownsame}
-                        from yesterday's count of {yesterday_hospitalizations_increase}
-                        <br>
-                    </p>
-                    <h4>Look at the {n} day moving average for new Hospitalizations in {location}:</h4>
-                    <img src="{new_hospitalizations_graph_path}"alt= "New Hosiptalizations vs Time for {date}">
-                    <p>New Deaths in {location} is appeare to be DECLINE/STAGNINT/INCREASING</p>
-                </td>
-                <td>
-                    <h2 align="center">New Deaths: {death_increase}</h2>
-                    <p>There were {death_increase} new Deaths recorded as of yesterday which is {death_updownsame}
-                        from yesterday's count of {yesterday_death_increase}
-                        <br>
-                    </p>
-                    <h4>Look at the {n} day moving average for new Deaths in {location}:</h4>
-                    <img src="{new_deaths_graph_path}"alt= "New Hosiptalizations vs Time for {date}">
-                    <p>New Deaths in {location} is appeare to be DECLINE/STAGNINT/INCREASING</p>
-                </td>
-            </tr>
-        </table>
-    </html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Covid-19 update for {date} in {location}</title>
+</head>
+<h1 align="center">Covid-19 update in {location} for {date}</h1>
+<br>
+<h2 align="center">The New</h2>
+<br>
+<h3>New Cases: {cases_increase}</h3>
+<ul>
+    <li>
+        <p>There were {cases_increase} new cases recorded as of yesterday which is
+            {case_updownsame} from yesterday's count of {yesterday_cases_increase}</p>
+    </li>
+    <li>
+        <p>The current {n} day moving average is {cases_n_moving_average} which is 
+             {n_case_updownsame} from the prevoius {n} day moving average of {previous_cases_n_moving_average}
+        </p>
+    </li>
+    <li>
+        <p>R={new_cases_r_value} (This is an approximation of how many health people the average infected person will spread the virus to)</p>
+    </li>
+    <li>
+        <p>New cases in {location} is appeare to be {new_cases_increasing_decreasing_stagnint}<sup>*</sup></p>
+    </li>
+</ul>
+<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingTotal Cases-{date}.jpg"</sub></p>
+
+<h3>New Hospitalizations: {hospitalizations_increase}</h3>
+<ul>
+    <li>
+        <p>There were {hospitalizations_increase} new hospitalizations recorded as of yesterday which is {hosptialization_updownsame}
+            from yesterday's count of {yesterday_hospitalizations_increase}</p>
+    </li>
+    <li>
+        <p>The current {n} day moving average is {hospitalizations_n_moving_average} which is {hosptialization_updownsame}
+            from the prevoius {n} day moving average of {previous_hospitalizations_n_moving_average}
+        </p>
+    </li>
+    <li>
+        <p>New hospitalizations in {location} is appeare to be {new_hospitalizations_increasing_decreasing_stagnint}<sup>*</sup></p>
+    </li>
+</ul>
+<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingHospitalizations-{date}.jpg"</sub></p>
+
+<h3>New Deaths: {death_increase}</h3>
+<ul>
+    <li>
+        <p>There were {death_increase} new deaths recorded as of yesterday which is {death_updownsame}
+            from yesterday's count of {yesterday_death_increase}</p>
+    </li>
+    <li>
+        <p>The current {n} day moving average is {deaths_n_moving_average} which is {death_updownsame}
+            from the prevoius {n} day moving average of {previous_deaths_n_moving_average}
+        </p>
+    </li>
+    <li>
+        <p>New deaths in {location} is appeare to be {new_deaths_increasing_decreasing_stagnint}<sup>*</sup></p>
+    </li>
+</ul>
+<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingDeaths-{date}.jpg"/sub></p>
+<br>
+<br>
+<h2 align="center">Cumlative Data</h2>
+<h3>Total Cases: {total_cases}</h3>
+<p><sub>For visual refernce look at the attchment "{location}-cumvstimeTotal Cases-{date}.jpg"</sub></p>
+<h3>Total Hospitalizations: {total_hosptializations}</h3>
+<p><sub>For visual refernce look at the attchment {location}-cumvstimeHospitalizations-{date}.jpg</sub></p>
+<h3>Total Deaths: {total_deaths}</h3>
+<p><sub>For visual refernce look at the attchment {location}-cumvstimeDeaths-{date}.jpg</sub></p>
+</html>
     """
 
     f.write(message)
     f.close()
 
-create_html(pd.tracking_loalities[2])
+create_html(pd.tracking_loalities[0],7)
