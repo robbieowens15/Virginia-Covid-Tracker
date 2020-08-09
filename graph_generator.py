@@ -10,7 +10,6 @@ import math
 
 date = date.today().isoformat()
 
-#plt.style.use('seaborn')
 def cumsum_vs_time(locality_obj, tag):
     y = []
     x = []
@@ -20,13 +19,9 @@ def cumsum_vs_time(locality_obj, tag):
     x.reverse()
     y.reverse()
 
-    fig, ax = plt.subplots()
-
+    _, ax = plt.subplots()
     plt.grid(color='black',linewidth=0.25,alpha=0.75)
-
-
     ax.plot(x,y, linewidth=3.5)
-    #ax.scatter(x,y,alpha=0.6,edgecolors='face')
     ax.bar(x,y,0.5)
     xlabels = []
     xticks = []
@@ -56,14 +51,10 @@ def n_day_moving_average_vs_time(locality_obj, tag, n):
         y.insert(0, int(data[i]))
         x.insert(0, locality_obj.data_list[i+2*n][processed_data.DATE])
     x.reverse()
-    #y.reverse()
 
     _, ax = plt.subplots()
-
     plt.grid(color='black',linewidth=0.25,alpha=0.75)
-
     ax.plot(x,y, linewidth=3.5)
-    #ax.scatter(x,y,alpha=0.6,edgecolors='face')
     ax.bar(x,y,0.5)
     xlabels = []
     xticks = []

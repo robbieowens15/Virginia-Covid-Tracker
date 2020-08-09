@@ -107,7 +107,7 @@ def create_html(locality,n):
     total_hosptializations = pd.return_cumlative(locality,pd.TOTAL_HOSPITALIZATIONS)
     total_deaths = pd.return_cumlative(locality,pd.TOTAL_DEATHS)
 
-    #make Graphs
+    #make graphs
     gd.n_day_moving_average_vs_time(locality, pd.TOTAL_CASES,n)
     gd.n_day_moving_average_vs_time(locality, pd.TOTAL_HOSPITALIZATIONS,n)
     gd.n_day_moving_average_vs_time(locality,pd.TOTAL_DEATHS,n)
@@ -153,7 +153,7 @@ def create_html(locality,n):
 <h3>New Hospitalizations: {hospitalizations_increase}</h3>
 <ul>
     <li>
-        <p>There were {hospitalizations_increase} new hospitalizations recorded as of yesterday which is {hosptialization_updownsame}
+        <p>There were {hospitalizations_increase} new hospitalizations recorded as of yesterday which is {n_hosptialization_updownsame}
             from yesterday's count of {yesterday_hospitalizations_increase}</p>
     </li>
     <li>
@@ -174,7 +174,7 @@ def create_html(locality,n):
             from yesterday's count of {yesterday_death_increase}</p>
     </li>
     <li>
-        <p>The current {n} day moving average is {deaths_n_moving_average} which is {death_updownsame}
+        <p>The current {n} day moving average is {deaths_n_moving_average} which is {n_death_updownsame}
             from the prevoius {n} day moving average of {previous_deaths_n_moving_average}
         </p>
     </li>

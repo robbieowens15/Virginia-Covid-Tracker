@@ -12,10 +12,9 @@ def main():
     pd.create_localities(pd.example_localities)
 
     pd.read_data()
-
     for locality in pd.tracking_localities:
         html.create_html(locality,7)
-    es.send_mail(pd.tracking_localities[1])
+    es.send_mail(pd.tracking_localities[1], 'raowens2001@gmail.com')
 
 def delete_clutter():
     path = 'HTML/images'
@@ -39,5 +38,3 @@ def delete_clutter():
 if __name__ == "__main__":
     main()
     delete_clutter()
-    
-    
