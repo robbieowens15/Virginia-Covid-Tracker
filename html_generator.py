@@ -112,7 +112,7 @@ def create_html(locality,n):
     gd.n_day_moving_average_vs_time(locality, pd.TOTAL_HOSPITALIZATIONS,n)
     gd.n_day_moving_average_vs_time(locality,pd.TOTAL_DEATHS,n)
     gd.cumsum_vs_time(locality,pd.TOTAL_CASES)
-    gd.cumsum_vs_time(locality,pd.TOTAL_DEATHS)
+    gd.cumsum_vs_time(locality,pd.TOTAL_HOSPITALIZATIONS)
     gd.cumsum_vs_time(locality,pd.TOTAL_DEATHS)
 
     data_dir = Path(str(os.path.dirname(__file__))+'/HTML')
@@ -145,7 +145,7 @@ def create_html(locality,n):
         <p>R={new_cases_r_value} (This is an approximation of how many health people the average infected person will spread the virus to)</p>
     </li>
     <li>
-        <p>New cases in {location} is appeare to be {new_cases_increasing_decreasing_stagnint}<sup>*</sup></p>
+        <p>New cases in {location} is appeare to be {new_cases_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
 <p><sub>For visual refernce look at the attchment "{location}-{n}daymovingTotal Cases-{date}.jpg"</sub></p>
@@ -162,7 +162,7 @@ def create_html(locality,n):
         </p>
     </li>
     <li>
-        <p>New hospitalizations in {location} is appeare to be {new_hospitalizations_increasing_decreasing_stagnint}<sup>*</sup></p>
+        <p>New hospitalizations in {location} is appeare to be {new_hospitalizations_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
 <p><sub>For visual refernce look at the attchment "{location}-{n}daymovingHospitalizations-{date}.jpg"</sub></p>
@@ -179,19 +179,19 @@ def create_html(locality,n):
         </p>
     </li>
     <li>
-        <p>New deaths in {location} is appeare to be {new_deaths_increasing_decreasing_stagnint}<sup>*</sup></p>
+        <p>New deaths in {location} is appeare to be {new_deaths_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingDeaths-{date}.jpg"/sub></p>
+<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingDeaths-{date}.jpg"</sub></p>
 <br>
 <br>
 <h2 align="center">Cumlative Data</h2>
 <h3>Total Cases: {total_cases}</h3>
 <p><sub>For visual refernce look at the attchment "{location}-cumvstimeTotal Cases-{date}.jpg"</sub></p>
 <h3>Total Hospitalizations: {total_hosptializations}</h3>
-<p><sub>For visual refernce look at the attchment {location}-cumvstimeHospitalizations-{date}.jpg</sub></p>
+<p><sub>For visual refernce look at the attchment "{location}-cumvstimeHospitalizations-{date}.jpg"</sub></p>
 <h3>Total Deaths: {total_deaths}</h3>
-<p><sub>For visual refernce look at the attchment {location}-cumvstimeDeaths-{date}.jpg</sub></p>
+<p><sub>For visual refernce look at the attchment "{location}-cumvstimeDeaths-{date}.jpg"</sub></p>
 </html>
     """
 
