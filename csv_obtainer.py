@@ -30,6 +30,3 @@ def dowload_csv():
     
         file_writer.write(line + "\n")
     file_writer.close()
-
-#Uncomment and run file to retireve latest data
-dowload_csv()

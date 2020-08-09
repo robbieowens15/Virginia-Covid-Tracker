@@ -5,12 +5,15 @@ import email_sender as es
 
 def main():
     csv.dowload_csv()
+
     #todo This Should come from form
     pd.create_localities(pd.example_localities)
+
     pd.read_data()
-    for locality in pd.tracking_loalities:
+
+    for locality in pd.tracking_localities:
         html.create_html(locality,7)
-    es.send_mail(pd.tracking_loalities[2])
+    es.send_mail(pd.tracking_localities[1])
 
 #def delete_clutter():
 

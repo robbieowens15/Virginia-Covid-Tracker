@@ -197,5 +197,3 @@ def create_html(locality,n):
 
     f.write(message)
     f.close()
-
-create_html(pd.tracking_loalities[0],7)

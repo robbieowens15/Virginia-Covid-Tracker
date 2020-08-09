@@ -56,4 +56,3 @@ def send_mail(locality):
         smtp.login('covidvirginia@gmail.com','YC\-4[F&CyadTp!7=M:`.(4g*(T*')
         smtp.send_message(message)
 
-send_mail(pd.tracking_loalities[2])
