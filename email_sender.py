@@ -1,4 +1,5 @@
 import os
+from os import environ
 import imghdr
 from datetime import date
 import smtplib, ssl
@@ -6,8 +7,6 @@ from email.message import EmailMessage
 
 import process_data as pd
 
-#print(os.environ.get('COVID_EMAIL'))
-#print(os.environ.get('COVID_EMAIL_PASSWORD'))
 date = date.today().isoformat()
 
 def send_mail(locality, to_address):
@@ -47,5 +46,6 @@ def send_mail(locality, to_address):
     message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Deaths vs Time Fairfax {date}')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('covidvirginia@gmail.com','YC\-4[F&CyadTp!7=M:`.(4g*(T*')
+        
+        smtp.login(environ.get('COVID_EMAIL'), environ.get('COVID_EMAIL_PASSWORD'))
         smtp.send_message(message)
