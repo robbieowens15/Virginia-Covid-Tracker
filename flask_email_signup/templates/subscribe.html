@@ -1,11 +1,11 @@
 {% extends "index.html" %}
 {% block content %}
-    <h1>Subscribe</h1>
+    <h1 align="center">Subscribe</h1>
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Subscribe</legend>
+                <legend class="border-bottom mb-4">Sign Up Below!</legend>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
 
@@ -19,7 +19,7 @@
                     {% else %}
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
-
+                    <p><sub>Note that each email address may only sign up once</sub></p>
                 </div>
                 <div class="form-group">
                     {{ form.location.label(class="form-control-label") }}
