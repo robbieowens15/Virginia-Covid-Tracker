@@ -32,6 +32,9 @@ class SubscribeForm(FlaskForm):
         recipient = Recipient.query.filter_by(email=email.data).first()
         if recipient:
             raise ValidationError('This email address already is signed up')
+        num_recipient = len(Recipient.return_all_recipients())
+        if num_recipient > 499:
+            raise ValidationError('Unfortunatly the Emailing List is Full. Please try again another time')
 
 class UnsubscribeForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
