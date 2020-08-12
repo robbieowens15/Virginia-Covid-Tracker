@@ -7,14 +7,16 @@ import email_sender as es
 
 def main():
     csv.dowload_csv()
-
-    #todo This Should come from form
-    pd.create_localities(pd.example_localities)
-
+    list_of_localities = pd.get_locality_list_from_db()
+    list_of_email_recipients = pd.get_recipient_list_from_db()
+    pd.create_localities(list_of_localities)
     pd.read_data()
     for locality in pd.tracking_localities:
         html.create_html(locality,7)
-    es.send_mail(pd.tracking_localities[2], 'raowens2001@gmail.com')
+    
+    for recipient in list_of_email_recipients:
+        locality_obj = pd.return_locality_obj(recipient.locality)
+        es.send_mail(locality_obj, recipient.email)
 
 def delete_clutter():
     path = 'HTML/images'

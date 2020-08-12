@@ -7,3 +7,6 @@ class Recipient(db.Model):
 
     def __repr__(self):
         return f"(id: {self.id}) email: {self.email} --> {self.locality}"
+
+    def return_all_recipients():
+        return Recipient.query.all()
