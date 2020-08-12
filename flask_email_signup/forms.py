@@ -2,11 +2,14 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email
 from flask_email_signup.modles import Recipient
+import sys
+sys.path.insert(1,'../')
+import process_data as pd
 
 class SubscribeForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     #todo choices List will come from speadsheet
-    location = SelectField('Locations', choices=['Fairfax County', 'Loudon County', 'Albemarle County'])
+    location = SelectField('Locations', choices=pd.return_localities_as_list())
     submit = SubmitField('Subscribe')
 
     def validate_email(self, email):
