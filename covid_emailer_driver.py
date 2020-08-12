@@ -14,7 +14,7 @@ def main():
     pd.read_data()
     for locality in pd.tracking_localities:
         html.create_html(locality,7)
-    es.send_mail(pd.tracking_localities[0], 'raowens2001@gmail.com')
+    es.send_mail(pd.tracking_localities[2], 'raowens2001@gmail.com')
 
 def delete_clutter():
     path = 'HTML/images'
