@@ -23,30 +23,30 @@ def send_mail(locality, to_address):
     with open(f'HTML/images/{locality.name}-7daymovingTotal Cases-{date}.jpg','rb') as attach_file:
         image_type = imghdr.what(attach_file.name)
         image_data = attach_file.read()
-    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'New Cases vs Time Fairfax {date}')
+    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'New Cases vs Time {locality.name} {date}')
     with open(f'HTML/images/{locality.name}-7daymovingHospitalizations-{date}.jpg','rb') as attach_file:
         image_type = imghdr.what(attach_file.name)
         image_data = attach_file.read()
-    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'New Hospitalizations vs Time Fairfax {date}')
+    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'New Hospitalizations vs Time {locality.name}  {date}')
     with open(f'HTML/images/{locality.name}-7daymovingDeaths-{date}.jpg','rb') as attach_file:
         image_type = imghdr.what(attach_file.name)
         image_data = attach_file.read()
-    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'New Deaths vs Time Fairfax {date}')
+    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'New Deaths vs Time {locality.name}  {date}')
 
     with open(f'HTML/images/{locality.name}-cumvstimeTotal Cases-{date}.jpg','rb') as attach_file:
         image_type = imghdr.what(attach_file.name)
         image_data = attach_file.read()
-    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Cases vs Time Fairfax {date}')
+    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Cases vs Time {locality.name}  {date}')
 
     with open(f'HTML/images/{locality.name}-cumvstimeHospitalizations-{date}.jpg','rb') as attach_file:
         image_type = imghdr.what(attach_file.name)
         image_data = attach_file.read()
-    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Hospitalizations vs Time Fairfax {date}')
+    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Hospitalizations vs Time {locality.name}  {date}')
 
     with open(f'HTML/images/{locality.name}-cumvstimeDeaths-{date}.jpg','rb') as attach_file:
         image_type = imghdr.what(attach_file.name)
         image_data = attach_file.read()
-    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Deaths vs Time Fairfax {date}')
+    message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Deaths vs Time {locality.name}  {date}')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         

@@ -148,7 +148,7 @@ def create_html(locality,n):
         <p>New cases in {location} is appeare to be {new_cases_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingTotal Cases-{date}.jpg"</sub></p>
+<p><sub>For visual refernce look at the attchment "New Cases vs Time {location} {date}"</sub></p>
 
 <h3>New Hospitalizations: {hospitalizations_increase}</h3>
 <ul>
@@ -165,7 +165,7 @@ def create_html(locality,n):
         <p>New hospitalizations in {location} is appeare to be {new_hospitalizations_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingHospitalizations-{date}.jpg"</sub></p>
+<p><sub>For visual refernce look at the attchment "New Hospitalizations vs Time {location}  {date}"</sub></p>
 
 <h3>New Deaths: {death_increase}</h3>
 <ul>
@@ -182,16 +182,21 @@ def create_html(locality,n):
         <p>New deaths in {location} is appeare to be {new_deaths_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "{location}-{n}daymovingDeaths-{date}.jpg"</sub></p>
+<p><sub>For visual refernce look at the attchment "New Deaths vs Time {location}  {date}"</sub></p>
 <br>
 <br>
 <h2 align="center">Cumlative Data</h2>
 <h3>Total Cases: {total_cases}</h3>
-<p><sub>For visual refernce look at the attchment "{location}-cumvstimeTotal Cases-{date}.jpg"</sub></p>
+<p><sub>For visual refernce look at the attchment "Total Cases vs Time {location}  {date}"</sub></p>
 <h3>Total Hospitalizations: {total_hosptializations}</h3>
-<p><sub>For visual refernce look at the attchment "{location}-cumvstimeHospitalizations-{date}.jpg"</sub></p>
+<p><sub>For visual refernce look at the attchment "Total Hospitalizations vs Time {location}  {date}"</sub></p>
 <h3>Total Deaths: {total_deaths}</h3>
-<p><sub>For visual refernce look at the attchment "{location}-cumvstimeDeaths-{date}.jpg"</sub></p>
+<p><sub>For visual refernce look at the attchment "Total Deaths vs Time {location}  {date}"</sub></p>
+<br>
+<br>
+<h6>Enjoy These Emails? Consider supporting me:</h6>
+<a href="http://paypal.me/RobertOwens956" target="_blank">PayPal</a>
+<a href="http://www.venmo.com/Robbie-Owens-2">Venmo</a>
 </html>
     """
 
