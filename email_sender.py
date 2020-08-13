@@ -49,7 +49,6 @@ def send_mail(locality, to_address):
     message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Deaths vs Time {locality.name}  {date}')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        
         smtp.login(environ.get('COVID_EMAIL'), environ.get('COVID_EMAIL_PASSWORD'))
         smtp.send_message(message)
 
@@ -83,6 +82,5 @@ def send_admin_email(to_address):
     message.set_content(line)
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        
         smtp.login(environ.get('COVID_EMAIL'), environ.get('COVID_EMAIL_PASSWORD'))
         smtp.send_message(message)
