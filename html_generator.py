@@ -194,8 +194,9 @@ def create_html(locality,n):
 <p><sub>For visual refernce look at the attchment "Total Deaths vs Time {location}  {date}"</sub></p>
 <br>
 <br>
-<h6>Enjoy These Emails? Consider supporting me:</h6>
+<h4>Enjoy These Emails? Consider supporting me:</h4>
 <a href="http://paypal.me/RobertOwens956" target="_blank">PayPal</a>
+<br>
 <a href="http://www.venmo.com/Robbie-Owens-2">Venmo</a>
 </html>
     """
