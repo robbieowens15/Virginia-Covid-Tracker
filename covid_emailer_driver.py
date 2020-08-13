@@ -1,13 +1,9 @@
 import os
-import datetime
-import time
 import csv_obtainer as csv
 import process_data as pd
 import html_generator as html
 import email_sender as es
 
-LOWER_TIME_LIMIT = datetime.datetime(hour=18,minute=19,second=0,microsecond=0)
-UPPER_TIME_LIMIT = datetime.datetime(hour=18,minute=20,second=0,microsecond=0)
 def main():
     csv.dowload_csv()
     list_of_localities = pd.get_locality_list_from_db()
@@ -20,7 +16,9 @@ def main():
     for recipient in list_of_email_recipients:
         locality_obj = pd.return_locality_obj(recipient.locality)
         es.send_mail(locality_obj, recipient.email)
-
+        
+    es.send_admin_email("raowens2001@gmail.com")
+    
 def delete_clutter():
     path = 'HTML/images'
     with os.scandir(path) as dirs:
@@ -41,7 +39,5 @@ def delete_clutter():
                 os.remove(entry)
 
 if __name__ == "__main__":
-    while LOWER_TIME_LIMIT.time() < datetime.datetime.now().time() and datetime.datetime.now().time() < UPPER_TIME_LIMIT.time():
-        main()
-        delete_clutter()
-        time.sleep(60)
+    main()
+    delete_clutter()
