@@ -1,9 +1,9 @@
 {% extends "index.html" %}
 {% block content %}
-<br>
-<br>
-<div class="content-header">
-    <h1>Virginia Covid-19 Data Email List</h1>
+<div class="container">
+    <div align="center">
+        <h1>Virginia Covid-19 Data Email List</h1>
+    </div>
 </div>
 <br>
 <div class="content-section">
@@ -34,6 +34,7 @@
             <li><p>R less than 1 means average coronavirus patient infects less than one other person (virus is contracting)</p></li>
         </ul>
     </ul>
+    <br>
     <a href="{{ url_for('subscribe') }}"><h2 align="center">Ready to sign up?</h2></a>
 </div>
 {% endblock content %}
