@@ -3,8 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_email_signup import app, db, modles
 from flask_email_signup.forms import SubscribeForm, UnsubscribeForm
 
+@app.route('/')
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
 
-@app.route('/', methods=['GET','POST'])
 @app.route('/subscribe', methods=['GET','POST'])
 def subscribe():
     form = SubscribeForm()
