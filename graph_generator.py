@@ -35,7 +35,7 @@ def cumsum_vs_time(locality_obj, tag):
     plt.xticks(rotation=25)
 
     plt.ylabel(tag)
-    plt.title(f'Cummulative {tag} in '+locality_obj.name)
+    plt.title(f'Cumulative {tag} in '+locality_obj.name)
     
     data_dir = Path(str(os.path.dirname(__file__))+'/HTML/images')
     file_path = data_dir / f'{locality_obj.name}-cumvstime{tag}-{date}.jpg'

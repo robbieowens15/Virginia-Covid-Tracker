@@ -128,70 +128,70 @@ def create_html(locality,n):
 </head>
 <h1 align="center">Covid-19 update in {location} for {date}</h1>
 <br>
-<h2 align="center">The New</h2>
+<h2 align="center">Today's Data</h2>
 <br>
 <h3>New Cases: {cases_increase}</h3>
 <ul>
     <li>
-        <p>There were {cases_increase} new cases recorded as of yesterday which is
+        <p>There were {cases_increase} new cases recorded which is
             {case_updownsame} from yesterday's count of {yesterday_cases_increase}</p>
     </li>
     <li>
         <p>The current {n} day moving average is {cases_n_moving_average} which is 
-             {n_case_updownsame} from the prevoius {n} day moving average of {previous_cases_n_moving_average}
+             {n_case_updownsame} from the previous {n} day moving average of {previous_cases_n_moving_average}
         </p>
     </li>
     <li>
-        <p>R={new_cases_r_value} (This is an approximation of how many health people the average infected person will spread the virus to)</p>
+        <p>R={new_cases_r_value} (This is an approximation of how many healthy people the average infected person will spread the virus to)</p>
     </li>
     <li>
-        <p>New cases in {location} is appeare to be {new_cases_increasing_decreasing_stagnint}</p>
+        <p>New cases in {location} appear to be {new_cases_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "New Cases vs Time {location} {date}"</sub></p>
+<p><sub>For visual reference look at the attachment "New Cases vs Time {location} {date}"</sub></p>
 
 <h3>New Hospitalizations: {hospitalizations_increase}</h3>
 <ul>
     <li>
-        <p>There were {hospitalizations_increase} new hospitalizations recorded as of yesterday which is {n_hosptialization_updownsame}
+        <p>There were {hospitalizations_increase} new hospitalizations recorded which is {n_hosptialization_updownsame}
             from yesterday's count of {yesterday_hospitalizations_increase}</p>
     </li>
     <li>
         <p>The current {n} day moving average is {hospitalizations_n_moving_average} which is {hosptialization_updownsame}
-            from the prevoius {n} day moving average of {previous_hospitalizations_n_moving_average}
+            from the previous {n} day moving average of {previous_hospitalizations_n_moving_average}
         </p>
     </li>
     <li>
-        <p>New hospitalizations in {location} is appeare to be {new_hospitalizations_increasing_decreasing_stagnint}</p>
+        <p>New hospitalizations in {location} appear to be {new_hospitalizations_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "New Hospitalizations vs Time {location}  {date}"</sub></p>
+<p><sub>For visual reference look at the attachment "New Hospitalizations vs Time {location}  {date}"</sub></p>
 
 <h3>New Deaths: {death_increase}</h3>
 <ul>
     <li>
-        <p>There were {death_increase} new deaths recorded as of yesterday which is {death_updownsame}
+        <p>There were {death_increase} new deaths recorded which is {death_updownsame}
             from yesterday's count of {yesterday_death_increase}</p>
     </li>
     <li>
         <p>The current {n} day moving average is {deaths_n_moving_average} which is {n_death_updownsame}
-            from the prevoius {n} day moving average of {previous_deaths_n_moving_average}
+            from the previous {n} day moving average of {previous_deaths_n_moving_average}
         </p>
     </li>
     <li>
-        <p>New deaths in {location} is appeare to be {new_deaths_increasing_decreasing_stagnint}</p>
+        <p>New deaths in {location} appear to be {new_deaths_increasing_decreasing_stagnint}</p>
     </li>
 </ul>
-<p><sub>For visual refernce look at the attchment "New Deaths vs Time {location}  {date}"</sub></p>
+<p><sub>For visual reference look at the attachment "New Deaths vs Time {location}  {date}"</sub></p>
 <br>
 <br>
-<h2 align="center">Cumlative Data</h2>
+<h2 align="center">Cumulative Data</h2>
 <h3>Total Cases: {total_cases}</h3>
-<p><sub>For visual refernce look at the attchment "Total Cases vs Time {location}  {date}"</sub></p>
+<p><sub>For visual reference look at the attachment "Total Cases vs Time {location}  {date}"</sub></p>
 <h3>Total Hospitalizations: {total_hosptializations}</h3>
-<p><sub>For visual refernce look at the attchment "Total Hospitalizations vs Time {location}  {date}"</sub></p>
+<p><sub>For visual reference look at the attachment "Total Hospitalizations vs Time {location}  {date}"</sub></p>
 <h3>Total Deaths: {total_deaths}</h3>
-<p><sub>For visual refernce look at the attchment "Total Deaths vs Time {location}  {date}"</sub></p>
+<p><sub>For visual reference look at the attachment "Total Deaths vs Time {location}  {date}"</sub></p>
 <br>
 <br>
 <h4>Enjoy These Emails? Consider supporting me:</h4>
