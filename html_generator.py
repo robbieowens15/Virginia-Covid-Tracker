@@ -153,11 +153,11 @@ def create_html(locality,n):
 <h3>New Hospitalizations: {hospitalizations_increase}</h3>
 <ul>
     <li>
-        <p>There were {hospitalizations_increase} new hospitalizations recorded which is {n_hosptialization_updownsame}
+        <p>There were {hospitalizations_increase} new hospitalizations recorded which is {hosptialization_updownsame}
             from yesterday's count of {yesterday_hospitalizations_increase}</p>
     </li>
     <li>
-        <p>The current {n} day moving average is {hospitalizations_n_moving_average} which is {hosptialization_updownsame}
+        <p>The current {n} day moving average is {hospitalizations_n_moving_average} which is {n_hosptialization_updownsame}
             from the previous {n} day moving average of {previous_hospitalizations_n_moving_average}
         </p>
     </li>
@@ -198,6 +198,9 @@ def create_html(locality,n):
 <a href="http://paypal.me/RobertOwens956" target="_blank">PayPal</a>
 <br>
 <a href="http://www.venmo.com/Robbie-Owens-2">Venmo</a>
+<br>
+<br>
+<a href="http://www.virginia-novelvirus.com/unsubscribe">Unsubscribe</a>
 </html>
     """
 

@@ -5,12 +5,16 @@ from datetime import date
 import smtplib, ssl
 from email.message import EmailMessage
 import process_data as pd
+import json
 
 import sys
 sys.path.insert(1,'/flask_email_signup')
 from flask_email_signup import db, modles
 
 date = date.today().isoformat()
+
+with open('/etc/config.json') as config_file:
+	config = json.load(config_file)
 
 def send_mail(locality, to_address):
     message = EmailMessage()
@@ -49,7 +53,7 @@ def send_mail(locality, to_address):
     message.add_attachment(image_data, maintype='image', subtype=image_type, filename=f'Total Deaths vs Time {locality.name}  {date}')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login(environ.get('COVID_EMAIL'), environ.get('COVID_EMAIL_PASSWORD'))
+        smtp.login(config.get('COVID_EMAIL'), config.get('COVID_EMAIL_PASSWORD'))
         smtp.send_message(message)
 
 def send_admin_email(to_address):
@@ -82,5 +86,5 @@ def send_admin_email(to_address):
     message.set_content(line)
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login(environ.get('COVID_EMAIL'), environ.get('COVID_EMAIL_PASSWORD'))
+        smtp.login(config.get('COVID_EMAIL'), config.get('COVID_EMAIL_PASSWORD'))
         smtp.send_message(message)

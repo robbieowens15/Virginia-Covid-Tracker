@@ -93,7 +93,10 @@ def calculate_moving_n_day_average_list(locality, tag, n):
             current_sum += daily_increase_list[i+j]
 
         current_n_day_average = int(round(current_sum/DAYS_TO_AVERAGE, 0))
+        if current_n_day_average < 0:
+            current_n_day_average = 0
         n_day_moving_average.insert(0, current_n_day_average)
+
     return n_day_moving_average
 
 def calculate_daily_increase(locality, tag, bool):
@@ -104,7 +107,10 @@ def calculate_daily_increase(locality, tag, bool):
         today_total = int(locality.data_list[-3][tag])
         yesterday_total = int(locality.data_list[-4][tag])
 
-    return today_total-yesterday_total
+    if today_total-yesterday_total < 0:
+        return 0
+    else:
+        return today_total-yesterday_total
 
 def return_n_day_moving_average(locality,tag,n,bool,index=None):
     data_list = []
@@ -119,7 +125,10 @@ def return_n_day_moving_average(locality,tag,n,bool,index=None):
     sum = 0
     for num in data_list:
         sum += num
-    return round((sum/n),1)
+    if round((sum/n),1) > 0:
+        return round((sum/n),1)
+    else:
+        return 0.0
 
 def return_reproduction_rate(locality,tag,n):
     data_list = []
