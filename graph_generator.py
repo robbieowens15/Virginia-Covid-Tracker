@@ -26,7 +26,7 @@ def cumsum_vs_time(locality_obj, tag):
     xlabels = []
     xticks = []
     for i in range(len(x)):
-        if(i%15 == 0):
+        if(i%30 == 0):
             xlabels.insert(0,x[i])
             xticks.insert(0,i)
        
@@ -59,7 +59,7 @@ def n_day_moving_average_vs_time(locality_obj, tag, n):
     xlabels = []
     xticks = []
     for i in range(len(x)):
-        if(i%15 == 0):
+        if(i%30 == 0):
             xlabels.insert(0,x[i])
             xticks.insert(0,i)
        
