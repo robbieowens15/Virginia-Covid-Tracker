@@ -13,10 +13,12 @@ Virginia-Covid-Tracker
 - Lightweight flask webserver (`/flask_email_signup/*`) deployed to AWS Lightsail for user enrollment for daily notifications for a specific locality
 - Storage of users' locality enrollment in SQL Lite Database `/flask_email_signup/site.db`
 # Sample Email
-**HTML Message**
+### **HTML Message**
+
 ![](img/sample_email.jpeg?raw=true)
 
-**Graphics of Statistics**
+### **Graphics of Statistics**
+
 ![](img/New_Cases_vs_Time_Charlottesville_2021-07-01.jpeg?raw=true)
 ![](img/New_Hospitalizations_vs_Time_Charlottesville_2021-07-01.jpeg?raw=true)
 ![](img/New_Deaths_vs_Time_Charlottesville_2021-07-01.jpeg?raw=true)
